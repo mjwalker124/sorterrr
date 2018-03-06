@@ -1,0 +1,31 @@
+%h1 #{@project.name} - Groups
+
+%h2 Group Membership by Student
+
+%table
+  %thead
+    %tr
+      %th Family Name
+      %th Name in Family
+      %th Email
+      %th Group
+  %tbody
+    - @students.each do |student|
+      %tr
+        %td
+          = student.last_name
+        %td
+          = student.first_name
+        %td
+          = student.email
+        %td
+          = @membership_by_student[student.id]
+
+
+%h2 Group Membership by Group
+
+- @project.groups.each_with_index do |group, i|
+  %h3 Group #{i + 1} - #{group.tutor.first_name} #{group.tutor.last_name}
+  %ul
+    - group.students.each do |student|
+      %li #{student.first_name} #{student.last_name}

@@ -1,0 +1,14 @@
+- content_for :title, 'Change Password'
+.row
+  .col-sm-4.col-sm-offset-4
+    %h1 Change Your Password
+    %br
+    = simple_form_for(@user, url: {action: :update_password}, :method => :patch) do |f|
+      = f.error_notification
+      .form-group
+        %label{for: 'user_password'} Password
+        = f.password_field :password, autocomplete: 'off', class: 'form-control'
+      .form-group
+        %label{for: 'user_password_confirmation'} Password Confirmation
+        = f.password_field :password_confirmation, class: 'form-control'
+      = f.button :submit, 'Change Password', class: 'btn btn-primary'

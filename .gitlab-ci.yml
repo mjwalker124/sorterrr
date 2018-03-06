@@ -1,0 +1,52 @@
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/ruby/tags/
+image: "ruby:2.3.1"
+
+# Cache gems in between builds
+cache:
+  paths:
+    - vendor/ruby
+
+variables:
+#  PHANTOM_JS_DOWNLOAD_URL: "https://bitbucket.org/ariya/phantomjs/downloads/"
+  PHANTOM_JS_DOWNLOAD_URL: "https://github.com/davejm/phantomjs-builds/releases/download/v2.1.1/"
+  PHANTOM_JS: "phantomjs-2.1.1-linux-x86_64"
+
+before_script:
+  - ruby -v                                   # Print out ruby version for debugging
+  - apt-get update -qq && apt-get install sqlite3 libsqlite3-dev nodejs -yqq
+  - gem install bundler  --no-ri --no-rdoc    # Bundler is not installed with the image
+  - bundle install -j $(nproc) --path vendor  # Install dependencies into ./vendor/ruby
+  - cp config/database_sample-sqlite.yml config/database.yml
+  - bundle exec rails db:setup
+  # Install phantomJS for poltergeist JavaScript testing
+  - mkdir ~/tmp
+  - pushd ~/tmp
+  - wget $PHANTOM_JS_DOWNLOAD_URL/$PHANTOM_JS.tar.bz2
+  - tar xf $PHANTOM_JS.tar.bz2
+  - mv $PHANTOM_JS phantomjs
+  - ln -s ~/tmp/phantomjs/bin/phantomjs /usr/bin/phantomjs
+  - phantomjs --version
+  - popd
+
+
+# rubocop:
+#   script:
+#   - bundle exec rubocop
+
+rspec:
+  script:
+  - bundle exec rspec spec
+  only:
+    - dev
+    - master
+  stage: test
+  coverage: '/\(\d+\.\d+\%\) covered/'
+
+# deploy_to_demo_server:
+#   script:
+#   - bundle exec ed release -d demo
+#   - bundle exec cap demo deploy:seed
+#   only:
+#     - master
+#   stage: deploy

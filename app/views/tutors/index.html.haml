@@ -1,0 +1,31 @@
+- content_for :title, "Admin - Tutors"
+= render 'admin/admin_layout' do
+  %table.table.table-striped.table-bordered.fancytable
+    %thead
+      %tr
+        %th First name
+        %th Last name
+        %th Course year
+        %th
+        %th
+
+    %tbody
+      - @tutors.each do |tutor|
+        %tr{'data-tutor-id' => tutor.id}
+          %td= tutor.first_name
+          %td= tutor.last_name
+          %td= tutor.course_year.name
+          %td
+            %a{:href => "#", 'data-tutor-id' => tutor.id, :class => 'edit-tutor'} Edit
+          %td
+            %a{:href => "#", 'data-tutor-id' => tutor.id, :class => 'delete-tutor'} Delete
+
+
+  %br
+
+  .btn.btn-default{'aria-label': 'New Tutor', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-tutor-modal'} New Tutor
+
+-# Modal Boxes
+
+= render 'new_tutor_modal'
+= render 'edit_tutor_modal'

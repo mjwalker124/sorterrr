@@ -1,0 +1,16 @@
+#edit-course-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Edit Course
+      = simple_form_for(@course, :remote => true, :authenticity_token => true, html: { class: "edit-course-form", id: "edit-course"}, url: {action: :update}, :method => :patch) do |f|
+        .modal-body
+          = f.error_notification
+          = f.input :name
+          = f.input :code
+
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-primary{:type => :submit, :class => "save-course"} Save

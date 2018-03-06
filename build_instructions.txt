@@ -1,0 +1,8 @@
+1. bin/rails db:migrate
+2. bin/rails db:seed
+3. bin/delayed_job start
+4. bin/rails server
+
+--Default login
+Username = me@sheffield.ac.uk
+Password = password

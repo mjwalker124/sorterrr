@@ -1,0 +1,10 @@
+- content_for :title, 'Admin - Delete Data'
+= render 'admin/admin_layout' do
+  %h4 Notes
+  %p
+    Clicking the button below will delete all projects, students, groups and reviews so that you can start with a
+    clean database for the beginning of a new academic year. Year leaders, year leaders' allocation preferences,
+    courses and course years will <strong>not</strong> be deleted.
+
+  %button#btn-delete-data{class: 'btn btn-danger btn-block btn-lg'}
+    Delete Data

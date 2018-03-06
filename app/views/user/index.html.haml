@@ -1,0 +1,16 @@
+= render 'admin/admin_layout' do
+
+  %h3 User Management
+  .btn.btn-default{'aria-label': 'New Tutor', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-tutor-modal'} Change Password
+
+  %h3 Algorithm Defaults
+  %table
+    %tr
+      %td Ability Difference
+      %td #{current_user.allocation_config.alpha_ability_difference}
+  .btn.btn-default{'aria-label': 'New Tutor', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-tutor-modal'} Set algorithm defaults
+
+
+
+-# Modal Boxes
+

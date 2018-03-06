@@ -1,0 +1,64 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'app/services/**/*'
+    - 'spec/services/**/*'
+    - 'vendor/**/*'
+    - 'app/controllers/application_controller.rb'
+    - 'app/models/student.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+   Max: 180 # Set the max length (default 80)
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false
+
+Lint/IneffectiveAccessModifier:
+  Enabled: false

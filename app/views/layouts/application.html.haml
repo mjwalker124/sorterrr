@@ -1,0 +1,72 @@
+!!!
+%html
+  %head
+    %title Sorterrr - #{content_for(:title)}
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+    %meta{ name: "google", content: "notranslate"}
+    %script
+      App = { };
+    = stylesheet_link_tag    "application", media: :all
+    = javascript_include_tag "application"
+    = favicon_link_tag '/favicon.ico'
+    = csrf_meta_tags
+
+  %body{ class: [environment_notice_body_class, controller_name, action_name].reject(&:empty?).join(' ')  }
+    = render 'layouts/environment_notice'
+    .flash-messages
+      - flash.each do |name, msg|
+        - next unless name == 'alert' || name == 'notice'
+        .alert.fade.in
+          .container
+            - if name == 'notice'
+              = fa_icon('check', class: 'flash-success')
+            - else
+              = fa_icon('warning', class: 'flash-error')
+            = msg
+            %a{ href: '#', title: 'Hide this message', data: { dismiss: :alert } } Dismiss
+
+
+    %noscript
+      .warning-page-cover
+        .alert.alert-info
+          %h2 Sorry, it appears that you are using a web browser without JavaScript which prevents us offering you a rich online experience.
+          %p Please enable JavaScript or use a different web browser, or alternatively contact the CiCS Helpdesk for assistance.
+
+    #wrap
+      %nav#main-nav.navbar.navbar-inverse.navbar-fixed-top
+        .container-fluid
+          .navbar-header
+            %button.navbar-toggle{ data: { target: ".navbar-collapse", toggle: :collapse, type: :button } }
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to :root, class: 'navbar-brand hidden-sm' do
+              Sorterrr
+
+          .collapse.navbar-collapse
+            - if user_signed_in?
+              %ul.nav.navbar-nav.navbar-right
+                = navbar_link_to :admin, title: "Go to the admin page", identifier: :admin do
+                  Admin
+                %li.dropdown
+                  = link_to '#', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
+                    = fa_icon 'user', id: 'user-menu', data: {'user-year-id': current_user.course_year.id}, text: current_user.email
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to edit_user_path(current_user), title: 'Change your password' do
+                        = fa_icon 'pencil', text: 'Change your password'
+                      = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
+                        = fa_icon 'sign-out', text: 'Log out'
+
+      .container-fluid#main-container
+
+        = yield
+
+    %footer#footer
+      .container-fluid
+        %p
+          &copy;#{Date.today.year}
+          Team 23 - Software Hut - Sheffield University

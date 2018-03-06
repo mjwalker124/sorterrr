@@ -1,0 +1,22 @@
+#edit-student-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Edit Student
+      = simple_form_for(@student, :remote => true, :authenticity_token => true, html: { class: "edit-student-form", id: "edit-student"}, url: {action: :update, controller: '/students'}, :method => :patch) do |f|
+        .modal-body
+          = f.error_notification
+          = f.input :first_name
+          = f.input :last_name
+          = f.input :registration_number
+          = f.input :email
+          = f.input :ability, :input_html => { :type => "text" }
+          = f.input :overseas
+          = f.association :course_year
+          = f.association :course
+
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-primary{:type => :submit, :class => "save-student"} Save

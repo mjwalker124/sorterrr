@@ -1,0 +1,15 @@
+= simple_form_for @student, url: url_for(action: 'create') do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :registration_number
+    = f.input :email
+    = f.input :ability
+    = f.input :overseas
+    = f.association :course_year
+    = f.association :course
+
+  .form-actions
+    = f.button :submit

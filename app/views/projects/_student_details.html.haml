@@ -1,0 +1,23 @@
+.row
+  .col-sm-3
+    %img.person-img{src: '/images/unknown.jpg'}
+  .col-sm-9
+    %p.student-name -
+    %p.student-email -
+    %p.student-registration-number -
+.row
+  .col-sm-12.hidden-showxs
+    %p.student-course-name Course Name: -
+    %p.student-overseas Overseas: -
+    Current Grade:
+    .current-grade
+      %input#current-grade-input.form-control{type: 'text', value: "-"}
+    %hr
+    .previous_body
+      %table.table.table-striped
+        %thead
+          %th
+            Reviewers
+          %th
+            Supervisors
+        %tbody.previous_staff_relations

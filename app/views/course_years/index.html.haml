@@ -1,0 +1,32 @@
+- content_for :title, "Admin - Course Years"
+= render layout: 'admin/admin_layout' do
+  %table.table.table-striped.table-bordered.fancytable
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+
+
+    %tbody
+      - @course_years.each do |course_year|
+        %tr{'data-course-year-id' => course_year.id}
+          %td= course_year.name
+          %td
+            %a{:href => "#", 'data-course-year-id' => course_year.id, :class => 'edit-course-year'} Edit
+          %td
+            - if current_user.course_year.id == course_year.id
+              \-
+            - else
+              %a{:href => "#", 'data-course-year-id' => course_year.id, :class => 'delete-course-year'} Delete
+
+
+  %br
+
+    .btn.btn-default{'aria-label': 'New Course Year', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-course-year-modal'} New Course Year
+
+
+
+-# Modal Boxes
+= render 'edit_course_year_modal'
+= render 'new_course_year_modal'

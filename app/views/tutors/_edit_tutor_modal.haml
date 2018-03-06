@@ -1,0 +1,17 @@
+#edit-tutor-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Edit Tutor
+      = simple_form_for(@tutor, :remote => true, :authenticity_token => true, html: { class: "edit-tutor-form", id: "edit-tutor"}, url: {action: :update, controller: '/tutors'}, :method => :patch) do |f|
+        .modal-body
+          = f.error_notification
+          = f.input :first_name
+          = f.input :last_name
+          = f.association :course_year
+
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-primary{:type => :submit, :class => "save-tutor"} Save

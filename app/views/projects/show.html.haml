@@ -1,0 +1,64 @@
+- content_for :title, "Project - #{@project.name}"
+
+.row
+  .icon-bar.col-sm-10
+    .project-year
+      %a{href: "/#tab_year#{@project.course_year.id}"}
+        %i.fa.fa-angle-left{'aria-hidden': 'true'}
+        #{@project.course_year.name} Projects
+    .toolbar-separator
+    .project-name
+      %input#project-name-input.form-control{value: @project.name}
+    .toolbar-buttons
+      %a{href: "/projects/reviews/#{@project.id}", title: 'Reviewers Area'}
+        %i.fa.fa-address-book
+
+      %a{href: '#', title: 'Allocation already going on for a project in this year', :class=> if !@auto_allocate_blocked then 'hidden' end, :id => 'recalculation-progress'}
+        .icon-wrapper
+          %i.fa.fa-spinner.fa-pulse
+          %span.badge.queue_size
+            #{@auto_allocate_queue_size}
+      %a{href: '#', title: 'Allocate Project and Review Groups', class: if @auto_allocate_blocked then 'hidden' end, id: 'btn-recalculate-groups', 'data-toggle': 'modal', 'data-target': '#allocate-options-modal'}
+        .icon-wrapper
+          %i.fa.fa-refresh
+          %span.badge.queue_size
+            #{@auto_allocate_queue_size}
+      %a{href: '#', title: 'Randomise Project Groups', id: 'randomize-groups'}
+        %i.fa.fa-random
+      %a{href: '#', title: 'Quick Group Allocation (does not take tutors into account)', id: 'good-fit-groups'}
+        %i.fa.fa-retweet
+      %a{href: '#', title: 'Reset: Put all students back in the holding pen for this project', :id => 'btn-reset-groups'}
+        %i.fa.fa-undo
+      %a{href: project_print_path(@project.id), title: 'Print', id:'print-groups', target: '_blank'}
+        %i.fa.fa-print
+      %a{:href => "/projects/#{@project.id}.csv", :title => 'Download the groups'}
+        %i.fa.fa-download
+
+
+  .col-sm-10.main
+    %h2.project-name.hidden{'data-project-id': @project.id}
+    #groups
+      .block-grid-sm-1.block-grid-md-2.block-grid-lg-3
+        - @groups.each do |i|
+          %div{id: "group#{i.id}", class: 'group', 'data_tutor_id': i.tutor.id}
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title #{i.tutor.first_name + ' ' + i.tutor.last_name}
+              .panel-body
+                .row.group-members{data: {'group-id': i.id}}
+                  - i.students.each do |j|
+                    .group-member{'data-student-id': j.id, 'data-group-id': i.id, 'title': j.first_name + ' ' + j.last_name} #{j.first_name + ' ' + j.last_name}
+
+  .col-sm-2.sidebar.project-sidebar
+    %header Student Information
+    .project-sidebar-inner
+      = render 'student_details'
+      %hr.thin
+      .row
+        .col-sm-12
+          %h4.text-center Holding Pen
+          .row.holding-pen{'data-group-id': 'hp'}
+            - @holding_pen.students.each do |j|
+              .group-member{'data-student-id': j.id, 'data-group-id': 'hp', 'title': j.first_name + ' ' + j.last_name} #{j.first_name + ' ' + j.last_name}
+
+= render 'allocate_options_modal'

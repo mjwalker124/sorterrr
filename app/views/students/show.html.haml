@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @student.first_name
+%p
+  %b Last name:
+  = @student.last_name
+%p
+  %b Registration number:
+  = @student.registration_number
+%p
+  %b Email:
+  = @student.email
+%p
+  %b Ability:
+  = @student.ability
+%p
+  %b Overseas:
+  = @student.overseas
+%p
+  %b Course year:
+  = @student.course_year
+%p
+  %b Course:
+  = @student.course
+
+= link_to 'Edit', edit_student_path(@student)
+\|
+= link_to 'Back', students_path

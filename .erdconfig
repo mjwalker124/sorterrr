@@ -1,0 +1,5 @@
+exclude: "ActiveRecord::SessionStore::Session,Delayed::Backend::ActiveRecord::Job"
+filetype: "png"
+notation: "uml"
+splines: "ortho"
+node_shape: "record"

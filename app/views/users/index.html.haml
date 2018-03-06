@@ -1,0 +1,31 @@
+- content_for :title, "Admin - Year Leaders"
+= render 'admin/admin_layout' do
+  %table.table.table-striped.table-bordered.fancytable
+    %thead
+      %tr
+        %th Email
+        %th Course Year
+        %th
+        %th
+
+    %tbody
+      - @users.each do |user|
+        %tr{'data-user-id' => user.id}
+          %td= user.email
+          %td= user.course_year.name
+          %td
+            %a{:href => "#", 'data-user-id' => user.id, :class => 'edit-user'} Edit
+          %td
+            - if user.id == current_user.id
+              \-
+            - else
+              %a{:href => "#", 'data-user-id' => user.id, :class => 'delete-user'} Delete
+
+  %br
+
+    .btn.btn-default{'aria-label': 'New Year Leader', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-user-modal'} New Year Leader
+
+-# Modal Boxes
+
+= render 'new_user_modal'
+= render 'edit_user_modal'

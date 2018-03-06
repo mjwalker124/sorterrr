@@ -1,0 +1,18 @@
+.col-sm-3.col-md-2.sidebar
+  %ul.nav.nav-sidebar
+    = subnav_link_to students_path, identifier: :students do
+      Students
+    = subnav_link_to tutors_path, identifier: :tutors do
+      Tutors
+    = subnav_link_to users_path, identifier: :users do
+      Year Leaders
+    = subnav_link_to course_years_path, identifier: :course_years do
+      Course Years
+    = subnav_link_to courses_path, identifier: :courses do
+      Courses
+
+  %ul.nav.nav-sidebar
+    = subnav_link_to admin_import_path, identifier: :import do
+      Import
+    = subnav_link_to admin_delete_data_path, identifier: :delete_data do
+      Delete Data

@@ -1,0 +1,9 @@
+= simple_form_for @course, url: url_for(action: 'create') do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :code
+
+  .form-actions
+    = f.button :submit

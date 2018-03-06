@@ -1,0 +1,10 @@
+= simple_form_for @tutor, url: url_for(action: 'create') do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :first_name
+    = f.input :last_name
+    = f.association :course_year
+
+  .form-actions
+    = f.button :submit

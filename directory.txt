@@ -1,0 +1,188 @@
+./app/assets/javascripts/admin.coffee			-- Coffee file for the admin section
+./app/assets/javascripts/ajax_setup.coffee		-- Coffee file setting up ajax
+./app/assets/javascripts/application.js			-- JS for application to load in all coffee
+./app/assets/javascripts/cable.js			-- JS for handleing websockets in rails
+./app/assets/javascripts/courses.coffee			-- Coffee file for courses
+./app/assets/javascripts/course_years.coffee		-- Coffee for course years
+./app/assets/javascripts/dashboard.coffee		-- Coffee for dashboard
+./app/assets/javascripts/group_management.coffee	-- Coffee for group management class
+./app/assets/javascripts/jquery-readyselector.js	-- Setup coffee for individual pages
+./app/assets/javascripts/modal.coffee			-- Setup modal coffee
+./app/assets/javascripts/projects.coffee		-- Coffee for projects
+./app/assets/javascripts/reviews.coffee			-- Coffee for review groups
+./app/assets/javascripts/select2_init.coffee		-- Coffee for select initialization
+./app/assets/javascripts/slick_management.coffee	-- Coffee Class for admin tables
+./app/assets/javascripts/students.coffee		-- Coffee for students pages
+./app/assets/javascripts/tutors.coffee			-- Coffee for tutors
+./app/assets/javascripts/year_leaders.coffee		-- Coffee for year leaders
+
+./app/assets/stylesheets/admin.scss			-- Admin CSS
+./app/assets/stylesheets/application.css		-- General application css setup
+./app/assets/stylesheets/bootstrap_setup.sass		-- Bootstrap css
+./app/assets/stylesheets/common.scss			-- Common CSS
+./app/assets/stylesheets/courses.scss			-- Courses CSS
+./app/assets/stylesheets/course_years.scss		-- Course Years CSS
+./app/assets/stylesheets/custom_flash.sass		-- Custom Flash CSS
+./app/assets/stylesheets/dashboard.scss			-- Dashboard CSS
+./app/assets/stylesheets/environment_notice.sass	-- Environment CSS
+./app/assets/stylesheets/forms.sass			-- Forms CSS
+./app/assets/stylesheets/groups.scss			-- Groups CSS
+./app/assets/stylesheets/holding_pens.scss		-- Holding pens CSS
+./app/assets/stylesheets/layout.sass			-- General layout CSS
+./app/assets/stylesheets/print.scss			-- Print CSS
+./app/assets/stylesheets/projects.scss			-- Projects CSS
+./app/assets/stylesheets/reviews.scss			-- Reviews CSS
+./app/assets/stylesheets/scaffolds.scss			-- Scaffolds CSS
+./app/assets/stylesheets/students.scss			-- Students CSS
+./app/assets/stylesheets/tutors.scss			-- Tutors CSS
+./app/assets/stylesheets/variables.sass			-- Variable holder
+./app/assets/stylesheets/warning_page.sass		-- Warning page CSS
+
+./app/classes/allocator.rb				-- Handle allocation of students and groups
+
+./app/controllers/admin_controller.rb			-- Controller for admin controller
+./app/controllers/allocation_jobs_controller.rb		-- Controller for allocation jobs
+./app/controllers/application_controller.rb		-- Controller for general application
+./app/controllers/courses_controller.rb			-- Controller for courses
+./app/controllers/course_years_controller.rb		-- Controller for course years
+./app/controllers/dashboard_controller.rb		-- Dashboard controller
+./app/controllers/errors_controller.rb			-- Error handeling controller
+./app/controllers/pages_controller.rb			-- Pages controller
+./app/controllers/projects_controller.rb		-- Controller for projects
+./app/controllers/reviews_controller.rb			-- Controller for reviews
+./app/controllers/students_controller.rb		-- Controller for students
+./app/controllers/tutors_controller.rb			-- Controller for tutors
+./app/controllers/users_controller.rb			-- Controller for users
+
+./app/jobs/application_job.rb				-- Setup application job class
+./app/jobs/auto_allocate_job.rb				-- Auto allocate job setup to allow allocation to be seperate
+
+--These are all of the models used in the system
+./app/models/allocation_config.rb
+./app/models/allocation_job.rb
+./app/models/application_record.rb
+./app/models/course.rb
+./app/models/course_year.rb
+./app/models/group.rb
+./app/models/holding_pen.rb
+./app/models/holding_pen_review.rb
+./app/models/project.rb
+./app/models/review_group.rb
+./app/models/review.rb
+./app/models/student.rb
+./app/models/tutor.rb
+./app/models/user.rb
+
+-- These are all of the haml files for the system
+./app/views/admin
+./app/views/admin/_admin_layout.html.haml
+./app/views/admin/delete_data.html.haml
+./app/views/admin/import.html.haml
+./app/views/admin/_sidebar_nav.html.haml
+./app/views/courses
+./app/views/courses/_edit_course_modal.haml
+./app/views/courses/edit.html.haml
+./app/views/courses/_form.html.haml
+./app/views/courses/index.html.haml
+./app/views/courses/_new_course_modal.haml
+./app/views/courses/new.html.haml
+./app/views/courses/show.html.haml
+./app/views/course_years
+./app/views/course_years/_edit_course_year_modal.haml
+./app/views/course_years/edit.html.haml
+./app/views/course_years/index.html.haml
+./app/views/course_years/_new_course_year_modal.haml
+./app/views/course_years/new.html.haml
+./app/views/course_years/show.html.haml
+./app/views/dashboard
+./app/views/dashboard/index.html.haml
+./app/views/dashboard/_new_project_modal.html.haml
+./app/views/dashboard/_project.html.haml
+./app/views/devise
+./app/views/devise/sessions
+./app/views/devise/sessions/new.html.haml
+./app/views/errors
+./app/views/errors/error_403.html.haml
+./app/views/errors/error_404.html.haml
+./app/views/errors/error_422.html.haml
+./app/views/errors/error_500.html.haml
+./app/views/errors/ie_warning.html.haml
+./app/views/errors/javascript_warning.html.haml
+./app/views/groups
+./app/views/groups/edit.html.haml
+./app/views/groups/_form.html.haml
+./app/views/groups/index.html.haml
+./app/views/groups/new.html.haml
+./app/views/groups/show.html.haml
+./app/views/import_pictures
+./app/views/layouts
+./app/views/layouts/application.html.haml
+./app/views/layouts/_environment_notice.html.haml
+./app/views/layouts/mailer.html.erb
+./app/views/layouts/mailer.text.erb
+./app/views/layouts/plain_error.html.haml
+./app/views/layouts/print.html.haml
+./app/views/pages
+./app/views/pages/home-original.html.haml
+./app/views/projects
+./app/views/projects/_allocate_options_modal.html.haml
+./app/views/projects/_edit_ability_modal.html.haml
+./app/views/projects/edit.html.haml
+./app/views/projects/_form.html.haml
+./app/views/projects/index.html.haml
+./app/views/projects/new.html.haml
+./app/views/projects/print.html.haml
+./app/views/projects/reviews.html.haml
+./app/views/projects/show.html.haml
+./app/views/projects/_student_details.html.haml
+./app/views/reviews
+./app/views/reviews/edit.html.haml
+./app/views/reviews/_form.html.haml
+./app/views/reviews/index.html.haml
+./app/views/reviews/new.html.haml
+./app/views/students
+./app/views/students/edit.html.haml
+./app/views/students/_edit_student_modal.haml
+./app/views/students/_form.html.haml
+./app/views/students/index.html.haml
+./app/views/students/new.html.haml
+./app/views/students/_new_student_modal.haml
+./app/views/students/show.html.haml
+./app/views/tutors
+./app/views/tutors/edit.html.haml
+./app/views/tutors/_edit_tutor_modal.haml
+./app/views/tutors/_form.html.haml
+./app/views/tutors/index.html.haml
+./app/views/tutors/new.html.haml
+./app/views/tutors/_new_tutor_modal.haml
+./app/views/tutors/show.html.haml
+./app/views/user
+./app/views/user/index.html.haml
+./app/views/users
+./app/views/users/_edit_user_modal.haml
+./app/views/users/_form.html.haml
+./app/views/users/index.html.haml
+./app/views/users/new.html.haml
+./app/views/users/_new_user_modal.haml
+
+./bin/bundle
+./bin/delayed_job						--This allows the allocations to be processed
+./bin/rails
+./bin/rake
+./bin/setup
+./bin/spring
+./bin/update
+
+./db
+./db/schema.rb							-- This outlines the database
+./db/seeds.rb							-- This is the setup for the database
+
+./Gemfile							-- This contains all of the system's gems
+
+./public/favicon.ico						-- This is the icon used on the webapp
+./public/images/unknown.jpg					-- This is the default user image when there isn't a student one
+./public/sound
+./public/sound/update.mp3					--This is the sound played when there has been a change to the auto allocation group queue
+
+./spec								-- This contains all of the automated tests for the system
+

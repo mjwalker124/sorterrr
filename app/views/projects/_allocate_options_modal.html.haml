@@ -1,0 +1,21 @@
+#allocate-options-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Auto Allocation Options
+      = simple_form_for(:allocation_config, url: '/projects/' + @project.id.to_s + '/auto_allocate', remote: true) do |f|
+        .modal-body
+          %em Remember the priorities are relative to each other
+          %br
+          %br
+          = f.error_notification
+          - config = current_user.allocation_config
+          = f.input :alpha_ability_difference, label: 'Ability Difference Priority', input_html: { value: config.alpha_ability_difference }
+          = f.input :alpha_different_tutor, label: 'Tutor Variation Priority', input_html: { value: config.alpha_different_tutor }
+          = f.input :hard_iterations_limit, label: 'Max number of attempts at optimum solution', input_html: { value: config.hard_iterations_limit }
+          = f.input :no_improvement_stop, label: 'Number of attempts with no improvement before stopping', input_html: { value: config.no_improvement_stop }
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          = f.button :submit, 'Start allocation', class: 'btn-primary'

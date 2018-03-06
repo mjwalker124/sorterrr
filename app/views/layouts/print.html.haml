@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Sorterrr - #{content_for(:title)}
+    %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}
+    %meta{ name: "google", content: "notranslate"}
+    = stylesheet_link_tag    'print', media: :all
+    = favicon_link_tag '/favicon.ico'
+    = csrf_meta_tags
+
+  %body{ class: controller_name+' '+action_name, onload: 'window.print();'}
+    %noscript
+      .warning-page-cover
+        .alert.alert-info
+          %h2 Sorry, it appears that you are using a web browser without JavaScript which prevents us offering you a rich online experience.
+          %p Please enable JavaScript or use a different web browser, or alternatively contact the CiCS Helpdesk for assistance.
+
+    .main
+      = yield

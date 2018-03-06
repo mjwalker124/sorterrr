@@ -1,0 +1,48 @@
+// Place all the styles related to the Dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+.empty-project-pane {
+  margin-top: 200px;
+  font-size: 5em;
+}
+
+.project-filters {
+  li > div {
+    padding: $nav-link-padding;
+  }
+
+  .project-action-button {
+    float: right;
+
+    .btn {
+      padding: 9px 15px;
+    }
+  }
+
+  input {
+    height: 40px;
+    margin-left: 15px;
+  }
+}
+
+.delete-project-button {
+  padding: 3px 9px;
+  float: right;
+  &:hover {
+    background-color: #ef0707;
+    color: #fff;
+  }
+}
+
+.project {
+  .panel-footer .btn:first-child {
+    margin-right: 5px;
+  }
+}
+
+h3.dashboard {
+  display: inline;
+}

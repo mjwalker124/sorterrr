@@ -1,0 +1,28 @@
+- content_for :title, "Admin - Courses"
+= render layout: 'admin/admin_layout' do
+  %table.table.table-striped.table-bordered.fancytable
+    %thead
+      %tr
+        %th Name
+        %th Code
+        %th
+        %th
+
+    %tbody
+      - @courses.each do |course|
+        %tr{'data-course-id' => course.id}
+          %td= course.name
+          %td= course.code
+          %td
+            %a{:href => "#", :class => 'edit-course'} Edit
+          %td
+            %a{:href => "#", :class => 'delete-course'} Delete
+
+  %br
+
+    .btn.btn-default{'aria-label': 'New Course', type: 'button', 'data-toggle'=> 'modal', 'data-target': '#new-course-modal'} New Course
+
+-# Modal Boxes
+
+= render 'new_course_modal'
+= render 'edit_course_modal'

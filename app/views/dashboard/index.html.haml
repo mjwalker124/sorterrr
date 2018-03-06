@@ -1,0 +1,48 @@
+- content_for :title, 'Dashboard'
+
+%ul.nav.nav-pills.project-filters
+  %li
+    %div
+      %strong Filter projects by:
+  %li.active{role: 'presentation'}
+    %a{href: '#tab_recent', 'data-toggle': 'pill'}
+      Recently Updated
+  - @course_years.each_with_index do |c, i|
+    %li{role: 'presentation'}
+      %a{href: "#tab_year#{c.id}", 'data-toggle': 'pill'}
+        = c.name
+  %li
+    %input#search.form-control{type: 'text', placeholder: 'Search for a project', 'data-list': '.tab-pane.active > .row'}
+  %li.project-action-button
+    %a.btn.btn-default{'aria-label': 'Create new project', type: 'button', 'data-toggle': 'modal', 'data-target': '#new-project-modal'}
+      %span.glyphicon.glyphicon-plus{'aria-hidden': 'true'}
+      New Project
+
+%hr
+
+.tab-content
+  .tab-pane.active{id: 'tab_recent'}
+    .row
+      - if @projects.empty?
+        .col-sm-12.text-center.empty-project-pane
+          No projects
+
+      - @projects.each do |p|
+        = render 'project', p: p
+
+
+  - @course_years.each_with_index do |c, i|
+    .tab-pane{id: "tab_year#{c.id}"}
+      .row
+        - course_projects = @projects.where(course_year: c)
+
+        - if course_projects.empty?
+          .col-sm-12.text-center.empty-project-pane
+            No projects
+
+        - course_projects.each do |p|
+          = render 'project', p: p
+
+
+-# Modal Boxes
+= render 'new_project_modal'

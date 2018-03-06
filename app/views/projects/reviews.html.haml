@@ -1,0 +1,64 @@
+- content_for :title, "Project - #{@project.name}"
+
+.row
+  .icon-bar.col-sm-10
+    .project-year
+      %a{href: "/#tab_year#{@project.course_year.id}"}
+        %i.fa.fa-angle-left{'aria-hidden': 'true'}
+        #{@project.course_year.name} Projects
+    .toolbar-separator
+    .project-name
+      %input#project-name-input.form-control{type: 'text', value: @project.name}
+    .toolbar-buttons
+      %a{:href => "/projects/#{@project.id}", :title => "Project Area"}
+        %i.fa.fa-group
+      %a{href: '#', title: 'Randomise this review group', id: 'randomize-groups'}
+        %i.fa.fa-random
+      %a{href: '#', title: 'Reset: Put all students back in the holding pen for this review', :id => 'btn-reset-groups'}
+        %i.fa.fa-undo
+      %a{:href => "/projects/reviews/#{@project.id}/#{@review.id}.csv", :title => "Download the groups"}
+        %i.fa.fa-download
+
+
+  .col-sm-10.main
+    %h2.project-name.hidden{'data-review-id' => @review.id, 'data-project-id' => @project.id}
+
+    %ul.nav.nav-tabs
+      - @reviews.each.with_index(1) do |i, index|
+        %li{class: ('active' if i.id == @review.id)}
+          %a{:href => "/projects/reviews/#{@project.id}/#{i.id}"}
+            Review #{index}
+            - if i.id != @review.id
+              %i.fa.fa-trash{:class => 'delete-review', "data-review-id" => "#{i.id}"}
+      %li.add-tab
+        %a{:href => "#", :class => "add-review"}
+          %i.fa.fa-plus-circle
+
+    #groups
+      .block-grid-sm-1.block-grid-md-2.block-grid-lg-3
+        - @groups.each do |i|
+          %div{id: "group#{i.id}", class: 'group', 'data_tutor_id' => i.tutor.id}
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title #{i.tutor.first_name + ' ' + i.tutor.last_name}
+              .panel-body
+                .row.group-members{:data => {'group-id' => i.id}}
+                  - i.students.each do |j|
+                    .group-member{'data-student-id' => j.id, 'data-group-id' => i.id, 'title' => j.first_name + ' ' + j.last_name}#{j.first_name + ' ' + j.last_name}
+
+
+  .col-sm-2.sidebar.project-sidebar
+    %header Student Information
+    .project-sidebar-inner
+      = render 'student_details'
+      %hr.thin
+      .row
+        .col-sm-12
+          %h4.text-center Holding Pen
+          .row.holding-pen{'data-group-id' => 'hp'}
+            - @holding_pen.students.each do |j|
+              .group-member{'data-student-id' => j.id, 'data-group-id' => 'hp', 'title' => j.first_name + ' ' + j.last_name} #{j.first_name + ' ' + j.last_name}
+
+
+-# Modal Boxes
+= render 'edit_ability_modal'
