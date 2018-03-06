@@ -2,19 +2,12 @@
 ---
 
 ### Description
-Describe your app here...
+This is a group auto allocation management system in ruby on rails 
 
-### Significant Features/Technology
-The system has the following:
 
-* Some significant thing...
-* Another one...
+### Warning
+This is not all my work, I am aiming to update with the original git information to be able to properly acredit people's work.
 
-### Special Development Pre-requisites
-None.
+This was done as part of a team of four.
 
-### Deployment
-*QA -> Demo -> Production* using the `epi-deploy` gem.
-
-### Customer Contact
-Some Customer <some.customer@epigenesys.co.uk>
+My focus was on the interaction with the manual group management, while David was focused on automating it.
